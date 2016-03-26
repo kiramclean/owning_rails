@@ -3,7 +3,8 @@ class HomeController < ApplicationController
   after_action :footer
 
   def index
-    response.write 'hello there!'
+    @message = 'This is a message'
+    render :index
   end
 
   private
@@ -13,6 +14,6 @@ class HomeController < ApplicationController
     end
 
     def footer
-      response.write '&copy;, Kira'
+      response.write '<p>&copy;, Kira</p>'
     end
 end
