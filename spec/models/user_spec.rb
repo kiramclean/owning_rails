@@ -15,5 +15,13 @@ RSpec.describe User do
       expect(found).to be_a User
       expect(found.id).to eq 1
     end
+
+    it 'finds all users' do
+      users = User.all
+      expect(users).to be_a Array
+      user = users.first
+      expect(user).to be_a User
+      expect(user.id).to eq 1
+    end
   end
 end
