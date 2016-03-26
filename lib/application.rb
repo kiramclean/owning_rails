@@ -1,7 +1,5 @@
-require 'action_controller'
-require 'router'
-require 'config/routes'
-require 'app/controllers/application_controller'
+require_relative '../lib/action_controller'
+require_relative '../app/controllers/application_controller'
 
 class Application
   def call(env)
@@ -20,13 +18,12 @@ class Application
   end
 
   def route(path)
-    # _, controller_name, action_name = path.split('/')
-    # [controller_name || 'home', action_name || 'index']
-    Routes.recognize(path)
+    _, controller_name, action_name = path.split('/')
+    [controller_name || 'home', action_name || 'index']
   end
 
   def load_controller_class(name)
-    require "app/controllers/#{name}_controller" # Do not do this in production on thread-based servers!
+    require_relative "../app/controllers/#{name}_controller" # Do not do this in production on thread-based servers!
     Object.const_get name.capitalize + 'Controller'
   end
 end
