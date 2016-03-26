@@ -1,4 +1,4 @@
 require ::File.expand_path('../lib/boot', __FILE__)
-require_relative './config/application'
+require 'application'
 
 run Application.new
