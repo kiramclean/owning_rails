@@ -4,6 +4,7 @@ require_relative '../../lib/action_controller'
 
 class FilterTestController < ApplicationController
   before_action :before
+  after_action :after
 
   def initialize(out)
     @out = out
@@ -35,10 +36,10 @@ class FilterTestController < ApplicationController
 end
 
 RSpec.describe FilterTestController do
-  it 'filters the actions' do
+  it 'filters actions' do
     out = []
     FilterTestController.new(out).process(:index)
 
-    expect(out).to eq [:before, :index]
+    expect(out).to eq [:before, :index, :after]
   end
 end

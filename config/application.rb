@@ -1,7 +1,7 @@
 require 'action_controller'
-require 'router'
-require 'config/routes'
-require 'app/controllers/application_controller'
+require_relative '../lib/router'
+require_relative './routes'
+require_relative '../app/controllers/application_controller'
 
 class Application
   def call(env)
@@ -26,7 +26,7 @@ class Application
   end
 
   def load_controller_class(name)
-    require "app/controllers/#{name}_controller" # Do not do this in production on thread-based servers!
+    require_relative "../app/controllers/#{name}_controller" # Do not do this in production on thread-based servers!
     Object.const_get name.capitalize + 'Controller'
   end
 end
